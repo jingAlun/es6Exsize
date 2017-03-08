@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for in 与 for of 的区别</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        var a = ['A','B','C'];
+            a.name='小明';
+            console.log(a);  //["A", "B", "C", name: "小明"]
+        for(var key in a){
+            console.log(key); // 0 1 2  name  数组也是对象,将索引当做属性来遍历
+        }
+        //手动的添加个属性name后  fon  in   把name也包含在内   但length却不包含在内
+
+        //for of   修复了这些问题   它只循环集合本身的元素
+        for (var key of a){
+            console.log(key);   //A B C
+        }
+
+        a.forEach(function (element,index,array) {
+            //element 指当前元素的值
+            console.log(element);  //数组元素  A B C
+            //index指当前的索引
+            console.log(index);    // 0 1 2
+            //array指向当前对象本身
+            console.log(array) ;    //["A", "B", "C", name: "小明"]
+        })
+    </script>
+</body>
+</html>

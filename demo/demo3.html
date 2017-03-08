@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var arr = ["a",'B','C'];
+        var map = new Map([['A',15],['B',48],['C',88]]);
+        var set = new Set(['F','L',"i"]);
+        arr.name="小明";
+        arr.forEach(function (ele,index,array) {
+           // console.log(ele);//数组本身元素 a b c
+        });
+
+        map.forEach(function (ele,index,array) {
+//            console.log(ele); //15   48  88
+//            console.log(index);  //A   B   C
+//            console.log(array); //Map(3) {"A" => 15, "B" => 48, "C" => 88}
+        })
+
+        set.forEach(function (ele,index,array) {
+            //set没有索引  前两个参数的值都一样
+            console.log(ele);//F L i
+            console.log(index);//F L i
+            console.log(array);//Set(3) {"F", "L", "i"}
+        })
+    </script>
+</body>
+</html>
