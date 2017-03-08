@@ -8,16 +8,22 @@
     <script>
         "use strict";
         var a = ['adf',1,'ff'];
-//        var obj = {
-//            name:"小明",
-//            age:15
-//        };
-//        for(var key of obj){
-//            console.log(key)
-//        }
+        var map = new Map([['key1',1],['key2',2],['key3',3]]);
+        var set = new Set(['hh','jsdf']);
+
         for(var key of a){
+            console.log(key); //adf,1,ff
+        }
+
+        for(var key of map){
+            console.log(key);//["key1", 1]       ["key2", 2]    ["key3", 3]
+            console.log(key[0]+"="+key[1]);
+        }
+
+        for(var key of set){
             console.log(key);
         }
+
     </script>
 </body>
 </html>
