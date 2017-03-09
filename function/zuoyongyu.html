@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域的问题</title>
+</head>
+<body>
+    <script>
+
+
+        function fn(){
+
+            var str = "字符串";
+            var name="小明";
+            supper = "父字符串";
+            function sub() {
+                var name = "鹏";
+                str = "内部的字符串"; //没有 var 申明 ;
+            }
+
+            console.log(str); // 字符串   //未调用sub函数  没改变str的值
+            sub();
+            console.log(str);//内部的字符串  var 没申明  重名改变了变量
+            console.log(name);//小明     var 申明的  重名
+        }
+
+        fn();
+
+        console.log(supper); //父字符串  var没申明
+       // console.log(str); //报错  var申明的
+
+//变量提升 ;
+        function aa(){
+            var a = 2;
+            var c = a + b;
+            console.log("a:"+a+"b:"+b); //b : undefined
+            console.log(c); //NaN
+            var b = 5;
+        }
+        aa();
+
+
+//        for(let i = 0;i<5;i++){
+//            console.log(i)
+//        }
+        //console.log(i);
+        for(var j = 0;j<2;j++){
+            //console.log(j)
+        }
+        console.log(j);
+    </script>
+</body>
+</html>
