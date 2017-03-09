@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this指向的问题</title>
+</head>
+<body>
+    <script>
+//        function fn(){
+//            console.log(this);
+//        }
+//        //fn()//单独调用 this指向window
+//
+//
+//        var obj  = {
+//            name : '小明',
+//            age:function () {
+//                console.log(this);
+//            },
+//            ff:fn
+//        };
+//        //obj.ff(); //指向对象
+//       // obj.age();  //对象的形式调用  指向对象
+//        //fn(); //指向window
+//        var aa = obj.age;
+//        aa(); //指向window
+
+
+
+
+        'use strict';
+        function fn222(){
+            console.log(this);  //strict 模式下  this指向undefined
+        }
+      // fn222();
+
+
+
+        var obj ={
+            name:"oo",
+            age:function () {
+//                console.log(this); //指向对象
+                var that = this;
+                 function bb() {
+                        console.log(this); //undefined
+                        console.log(that); //指向对象
+                 }
+                bb();
+                bb.apply(obj,[]); //指向window
+            }
+        }
+       obj.age();
+fn222.apply(null,[]); //指向对象null
+    </script>
+</body>
+</html>
