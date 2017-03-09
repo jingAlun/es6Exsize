@@ -6,13 +6,36 @@
 </head>
 <body>
     <script>
-        var pow = function (x) {
+        var pow = function (x) {//x代表数组的每个元素
             return x*x;
         }
 
         var arr = [1,2,3,4,5,6];
         var newarr = arr.map(pow);
-        console.log(newarr)
+
+        //map是高阶函数  参数为函数
+       // console.log(newarr)  //数组  [1 , 4 , 9 ,..]  arr每个元素的平法
+
+
+       var arr1 =  arr.reduce(function (x,y) {  //求和 1+2的结果加2  结果再加4....
+            return x+y;
+        });
+
+        console.log(arr1);
+
+        var arr2 = arr.reduce(function (x,y) {//乘积
+            return x*y;
+        })
+        console.log(arr2)
+        var arr3 = ['1', '2', '3'];
+        var r;
+        function parse(x){
+            return Number(x);
+        }
+
+
+      r = arr3.map(parse);
+        console.log(r)
     </script>
 </body>
 </html>
