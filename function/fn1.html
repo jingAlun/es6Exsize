@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rest参数</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        function fn(a,b,...rest) {
+            console.log(rest);//array(3)  剩下
+        }
+
+        function aa() {
+            return
+            {name:'111'};
+        }
+
+        fn(1,2,88,444,11);
+        fn(2);//返回 [] ;
+
+       console.log(aa());
+    </script>
+</body>
+</html>
