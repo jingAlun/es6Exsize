@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排序</title>
+</head>
+<body>
+    <script>
+  //sort直接对数组修改  返回的也是当前数组
+        var arr = [4,5,9,22,1,2,3,6,7,8];
+       // console.log(arr.sort())  //1 2 22 3 4 .....
+//sort是根据字符的ASCII码在排序  2 的码比2的小  所以22在3的前面
+//sort拍数字时,默认把数字转为string
+
+//对数字排序
+        //正序
+      var arr1 =  arr.sort(function (x,y) {
+            if(x>y) return 1;
+            if(x<y) return -1;
+            return 0;
+        });
+      console.log(arr1);
+
+      //倒序
+        var arr2 =  arr.sort(function (x,y) {
+            if(x>y) return -1;
+            if(x<y) return 1;
+            return 0;
+        });
+        console.log(arr2);
+
+
+//对字符串排序
+      var str = ['g','A','v','b','a','G']  ;
+      console.log(str.sort()); //["A", "G", "a", "b", "g", "v"]
+
+        //只需忽略大小写即可
+        //正序
+        var str1 = str.sort(function (s1,s2) {
+            var s1 = s1.toUpperCase();
+            var s2 = s2.toUpperCase();
+            if(s1>s2) return 1;
+            if(s1<s2) return -1;
+            return 0;
+        });
+       console.log(str1);//["A", "a", "b", "G", "g", "v"]
+    </script>
+</body>
+</html>
