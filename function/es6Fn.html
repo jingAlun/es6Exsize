@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+    <script>
+        'use strict';
+      //  x => x*x;  相当于    function (x) {
+        //                        return x * x;
+    //                         }
+      //  var fn = x => x * x;
+    //箭头函数相当于匿名函数  箭头函数有两种格式 ,
+        // 一种是  x => x*x;  只包含一个表达式,连{...}和return都省略了
+        //另一种是 可以包含多条语句  这时候就不能省略 {....}和return le;
+//            x => {
+//                if (x > 0) {
+//                    return x * x;
+//                }
+//                else {
+//                    return - x * x;
+//                }
+//            }
+
+
+        //参数不是一个  要用()括起来
+        //两个参数
+      //  (x, y) => x * x + y * y
+         //无参数
+      //  () => 3.14;
+        // 可变参数:
+//        (x, y, ...rest) => {
+//            var i, sum = x + y;
+//            for (i=0; i<rest.length; i++) {
+//                sum += rest[i];
+//            }
+//            return sum;
+//        }
+
+
+        //要返回对象
+      //  x=>{foo:'a'};  //单表达式可省略{...} 这样会报错 与语法体有冲突
+        //改为
+      //  x=>({foo:'a'})
+
+
+        var obj = {
+            birth : 1990,
+            getAge:function (year) {
+                var b = this.birth;
+                var fn = function (y) {
+                    return y - this.birth; //2000
+                };
+                return fn.call({birth:2000},year)
+            }
+        };
+
+     //   console.log(obj.getAge(2015));//15
+
+        var aa = ()=>console.log(this); //window
+        aa();
+
+//箭头函数修复了this的指向问题 , call , apply的第一个参数改变不了this的指向 , 忽略
+        var obj1 = {
+            birth : 1990,
+            getAge:function (year) {
+                var b = this.birth;
+                var fn = (y)=>y-this.birth; //1990
+                return fn.call({birth:2000},year);
+            },
+            age:function () {
+                var bb = ()=>console.log(this);//;指向obj
+                return bb()
+            }
+        };
+        console.log(obj1.age());
+    //  console.log(obj1.getAge(2015));//25
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
