@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+    <script>
+        function count() {
+            var arr = [];
+            for(var i=1;i<=3;i++){
+                arr.push(function () {//引用的变量i 没立刻执行
+                    return i*i;
+                })
+            }
+            return arr;
+        }
+
+        //返回函数时不要引用任何循环变量 , 或者后续会发生变化的变量
+        var result = count();//是一个数组  包含三个函数
+//        console.log(result[0]()); //16
+//        console.log(result[1]()); //16
+//        console.log(result[2]()); //16  i已经变为4了
+
+
+        //一定要引用循环变量 , 方法是再创建一个函数 , 用该函数的参数绑定循环变量当前的值 , 无论该循环变量后续如何更改 , 已绑定到函数参数的值不变 .
+
+        function num(){
+            var arr = [];
+            for(var i=1;i<=3;i++){
+                arr.push((function (n) {
+                    //console.log(n);//1 2 3
+                    return n*n;
+                })(i)); //立即执行 且传参
+            }
+            return arr;
+        }
+
+        var res = num();
+       // console.log(res);
+
+        function create_counter(num) {
+            var x = num || 0;  //如果传参 x = 传的参数  否则是0;
+
+            return {
+                init:function () {
+                    x+=1;
+                    return x;
+                }
+            }
+        }
+        var time1 = create_counter();  //time1等于对象 与time2互不影响
+        console.log(time1.init());//1
+        console.log(time1.init());//2
+        console.log(time1.init());//3
+
+        var time2 = create_counter(10);//time2等于对象
+        console.log(time2.init());//11
+        console.log(time2.init());//12
+
+
+        //将多参数函数变为单参数函数
+
+        function make_pow(n){
+            return function (x) {
+                return Math.pow(x,n);
+            }
+
+        }
+        var pow1 = make_pow(2); //var pow1 = function(x){ return Math.pow(x,2) }
+         console.log(pow1(5));  //执行pow1(5)
+        var pow2 = make_pow(3);
+        console.log(pow2(5))
+    </script>
+</body>
+</html>
