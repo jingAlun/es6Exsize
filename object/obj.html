@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标准对象</title>
+</head>
+<body>
+    <script>
+       var num = 123;
+       var num1 = new Number(123);
+       console.log(typeof num); //number
+       console.log(typeof num1);//object
+        console.log(new Number(123)===123)
+
+        var a = Number(num1);
+        console.log(typeof a)
+
+        var arr = [1,2,3,5];
+        var my = null;
+
+        console.log(typeof arr); //object
+        console.log(Array.isArray(arr));//true
+
+        console.log(my === null);//true
+
+        console.log(typeof window.num === 'undefined'); //false  全局变量num存在
+        console.log(typeof window.aaaaa==='undefined');//true 存在
+
+       //转为string
+        console.log(typeof 123..toString());//string
+        console.log(typeof (123).toString());//string
+        console.log(typeof String(456)) ;//string
+
+
+    </script>
+</body>
+</html>
