@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date对象</title>
+</head>
+<body>
+    <script>
+        var now = new Date();//当前时间是浏览器从本机操作系统获取的时间 , 不一定准确 , 用户可以把当前时间设为任何值
+        console.log(now); //Fri Mar 10 2017 10:17:28 GMT+0800 (中国标准时间)
+
+        console.log(now.getFullYear());//年 2017
+        console.log(now.getMonth());//月-1  2 表示的是3月   0-11月
+        console.log(now.getDate());//日  10
+        console.log(now.getDay());//星期几 5
+        console.log(now.getHours());//时  10
+        console.log(now.getMinutes());//分  21
+        console.log(now.getSeconds());//秒  16
+        console.log(now.getMilliseconds());//毫秒  443
+        console.log(now.getTime());//1489112476443   从1970年1月1日到现在的毫秒数
+
+
+  //创建一个指定日期和时间的Date对象:
+        var d = new Date(2017,02,10,20, 15, 30, 123);
+        console.log(d);  //Mon May 01 2017 18:02:30 GMT+0800 (中国标准时间)
+        console.log(d.getMonth()); //  2月   表示的是3月      0-11月
+        console.log(d.getDate());//30 日   日期超过30 自动月份会变化
+        console.log(d.getDay());
+        var d2 = Date.parse('2017-03-10T11:00:22.875+08:00');
+        console.log(d2);//时间戳
+        var d3 = new Date(d2);
+        console.log(d3.toLocaleString()) ; //2017/3/10 上午11:00:22
+        console.log(d3.toUTCString()) ;//Fri, 10 Mar 2017 03:00:22 GMT
+
+//读取当前时间戳
+        //兼容
+        var time = null;
+        if(Date.now){//老版本IE没有这个now方法
+            time = Date.now();//时间戳
+            var now_date = new Date(time);
+            console.log(now_date.toLocaleDateString())
+        }else{
+            time = new Date.getTime();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
