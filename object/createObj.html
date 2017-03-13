@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建对象</title>
+</head>
+<body>
+    <script>
+        //原型链
+
+       function Student(name,age){
+           this.name=name;
+           this.age=age;
+           this.hello = function () {
+               console.log(this.name+'今年'+this.age+"了")
+           }
+       };
+
+
+       Student.prototype={
+           name:"parent",
+           fn:function () {
+               console.log(this.name+'今年'+this.age+"了");
+           }
+       };
+       var xiaoming = new Student('小明',20);
+       console.log(xiaoming.name);
+       xiaoming.hello();
+       console.log(xiaoming.constructor); // Student函数
+        console.log(Student.prototype);// {name:"parent",constructor:function }
+
+        console.log(xiaoming.constructor==Student.prototype.constructor); //true;
+        console.log(Student.prototype.constructor==Student); //true
+
+        console.log(Object.getPrototypeOf(xiaoming) == Student.prototype);//{name:"parent",constructor:function }
+
+        console.log(xiaoming instanceof Student); //true
+        console.log(xiaoming.__proto__.constructor);
+
+
+
+
+
+
+       var xiaofang = new Student('小芳',15);
+     //   console.log(xiaofang.name);//没传值 undefined
+
+        console.log(xiaoming.hello==xiaofang.hello); //false;
+
+        //fn是原型上的方法
+        console.log(xiaoming.fn==xiaofang.fn);  //true;
+
+
+
+
+
+    //创建对象不写new的方法
+
+        function People(props){
+            this.name=props.name || '匿名'; //默认是匿名
+            this.age=props.age || 1;        //默认是1
+        }
+        People.prototype.hello=function () {
+            console.log(this.name+"年龄是"+this.age);
+        };
+
+        //创建对象  不需new调用   传参灵活(可不传)
+        function createPeopel(props){
+            return new People(props || {})
+        }
+
+        var person1 = createPeopel({
+            name:"嘎嘎嘎"
+
+        });
+        console.log(person1.age); //1  年龄没传参 , 默认
+        person1.hello();
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
